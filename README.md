@@ -25,6 +25,41 @@ ingest → normalize_evidence → gap_finder → job_parser → evidence_matcher
     → hiring_manager_review → arbiter → export
 ```
 
+### Process Design
+
+The flowchart below shows how candidate evidence and job requirements move through the pipeline, where review happens, and what artifacts come out the other side.
+
+```mermaid
+flowchart LR
+    C["Candidate sources<br/>resume, notes, brag docs, transcripts"]
+    J["Target job descriptions"]
+
+    I["Ingest<br/>clean and classify sources"]
+    N["Normalize evidence<br/>extract facts with provenance"]
+    G["Gap finder<br/>generate follow-up questions"]
+    P["Job parser<br/>extract requirements and keywords"]
+    M["Evidence matcher<br/>build coverage map"]
+    B["Bullet writer<br/>draft grounded bullet variants"]
+    R["Resume assembler<br/>compose tailored draft"]
+    T["Red-team review<br/>unsupported claims and vagueness"]
+    H["Hiring manager review<br/>scanability and role fit"]
+    A["Arbiter<br/>accept, revise, or flag"]
+    X["Export"]
+
+    Q["Gap questions"]
+    O["Markdown, plain text, JSON"]
+
+    C --> I
+    J --> I
+    I -->|candidate sources| N
+    I -->|job descriptions| P
+    N --> G
+    N --> M
+    G --> Q
+    P --> M
+    M --> B --> R --> T --> H --> A --> X --> O
+```
+
 ### Pipeline Stages
 
 | Stage | Purpose |
