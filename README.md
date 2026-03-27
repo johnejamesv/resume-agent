@@ -64,8 +64,8 @@ Every bullet candidate carries `evidence_ids` linking back to the extracted evid
 
 ```bash
 # Clone and install
-git clone https://github.com/johnejamesv/resume-agentic-workflow.git
-cd resume-agentic-workflow
+git clone https://github.com/johnejamesv/resume-agent.git
+cd resume-agent
 pip install -e .
 
 # Configure API keys (optional)
@@ -83,7 +83,7 @@ python -m app.main \
 ## Project Structure
 
 ```
-resume-agentic-workflow/
+resume-agent/
 ├── app/
 │   ├── main.py              # CLI entry point
 │   ├── graph.py              # LangGraph pipeline definition
